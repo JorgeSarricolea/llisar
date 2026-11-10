@@ -6,3 +6,11 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Netlify Free injects "Powered by Netlify" via /.netlify/scripts/hud (srcdoc iframe).
+# CSP without script-src 'unsafe-inline' / with frame-src 'none' blocks that badge
+# for every visitor (docs.netlify.com/manage/projects/powered-by-netlify-badge/).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; form-action 'self'"
