@@ -1,0 +1,42 @@
+/* Hallmark · shape: Evening front desk · genre: editorial · theme: custom · job: hire · idea: "After dark, WhatsApp is the front desk of tourism and real estate." · vibe: coastal dusk, soft copper, quiet motion
+ * paper: oklch(14% 0.028 250) · accent: oklch(74% 0.12 48) · display: Fraunces · body: Figtree · hero: full-bleed dusk with living chat · nav: floating glass · footer: quiet colophon · imagery: dusk estuary + hotel blue hour + apartment · signature: chat that writes itself
+ * axes: dark/roman-serif/warm · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P_ok H_ok E_ok S_ok R_ok V_ok · weakest: P, photos are stand-ins until client shots arrive */
+@import url("./tokens.css");
+@import url("./base.css");
+
+h1,
+h2,
+h3 {
+  font-weight: var(--display-weight);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+h1 {
+  max-width: 14ch;
+  font-size: var(--text-display);
+  font-variation-settings: "SOFT" 50, "WONK" 0.4;
+}
+
+h2 {
+  max-width: 18ch;
+  font-size: var(--text-section);
+}
+
+h3 {
+  max-width: 28ch;
+  font-size: var(--text-title);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  max-width: 34ch;
+  color: var(--color-ink-2);
+  font-weight: 400;
+}

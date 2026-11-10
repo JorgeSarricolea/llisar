@@ -1,0 +1,17 @@
+{
+  "project": "llisar",
+  "framework": "react+vite",
+  "fonts": "none locked",
+  "palette": "none locked",
+  "design_md": false,
+  "product_url": null,
+  "preserved": [
+    "React+Vite scaffold",
+    "package.json scripts"
+  ],
+  "introduced": [
+    "Hallmark theme tokens",
+    "landing page sections",
+    "library photos"
+  ]
+}

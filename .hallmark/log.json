@@ -1,0 +1,62 @@
+[
+ {
+  "shape": "Evening front desk",
+  "theme": "custom",
+  "axes": "dark/roman-serif/warm",
+  "hero": "full-bleed dusk living chat",
+  "nav": "floating glass",
+  "footer": "colophon",
+  "imagery": "dusk+hotel+apartment",
+  "photos": [
+   "Conwy_Estuary_dusk",
+   "Amantaka_blue_hour",
+   "Banner_Street"
+  ],
+  "entry": "haltum-custom-v2",
+  "fingerprint": "haltum2",
+  "sections": [
+   "hero",
+   "chapters",
+   "work",
+   "method",
+   "contact"
+  ],
+  "signature": "living-whatsapp-chat",
+  "waived": [],
+  "prompt": "Haltum WhatsApp tourism real estate custom coastal dusk",
+  "date": "2026-11-10",
+  "mode": "build"
+ },
+ {
+  "shape": "Manifesto",
+  "theme": "coral",
+  "axes": "light/grotesk-sans/warm",
+  "hero": "Desk",
+  "nav": "edge-wordmark",
+  "footer": "colophon",
+  "imagery": "library+built-whatsapp",
+  "photos": [
+   "Parasols_Evening_Beach",
+   "Appartment_building_Banner_Street",
+   "Young_businesswoman_smartphone"
+  ],
+  "entry": "haltum-lp",
+  "fingerprint": "a8934b",
+  "sections": [
+   "hero",
+   "nichos",
+   "trabajo",
+   "metodo",
+   "contacto",
+   "footer"
+  ],
+  "signature": "whatsapp-thread-on-desk",
+  "waived": [
+   "44c",
+   "79"
+  ],
+  "prompt": "B2B Haltum WhatsApp AI agents tourism real estate",
+  "date": "2026-11-10",
+  "mode": "build"
+ }
+]
