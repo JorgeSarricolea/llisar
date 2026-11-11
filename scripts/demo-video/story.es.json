@@ -1,0 +1,41 @@
+{
+  "voice": "es-MX-DaliaNeural",
+  "rate": "+2%",
+  "stages": [
+    {
+      "id": "hook",
+      "label": "Apertura",
+      "lines": [
+        "De mensaje a visita. De chat a reserva."
+      ]
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp",
+      "lines": [
+        "Mira el WhatsApp: el lead pregunta, Llisar responde, califica y agenda."
+      ]
+    },
+    {
+      "id": "calendar",
+      "label": "Calendario",
+      "lines": [
+        "Luego el evento cae solo en tu calendario, con hora y detalle."
+      ]
+    },
+    {
+      "id": "excel",
+      "label": "Excel",
+      "lines": [
+        "Y la fila aparece en Excel. Mismo número. Tu tono. Sin copiar a mano."
+      ]
+    },
+    {
+      "id": "cta",
+      "label": "CTA",
+      "lines": [
+        "¿Lo armamos a tu medida? Habla con Llisar."
+      ]
+    }
+  ]
+}

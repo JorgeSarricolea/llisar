@@ -12,7 +12,7 @@
     "og:generate": "node scripts/generate-og.mjs",
     "demo:record": "node scripts/demo-video/record.mjs",
     "demo:assemble": "node scripts/demo-video/assemble.mjs",
-    "demo:video": "npm run demo:record && npm run demo:assemble"
+    "demo:video": "node scripts/demo-video/render.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

@@ -1,28 +1,28 @@
 # Llisar demo video (16:9 + 9:16)
 
-Same story, **separate framing** per ratio (not a crop of one master):
+Voice-synced **desk-zoom walkthrough** (cinematic push-in / pull-out, not LP slides):
 
-1. Live site capture — hero LivingChat, then `#que-hace`
-2. Edge TTS (es-MX) from `voice-script.es.txt`
-3. CTA end card — Hablar con Llisar · +52 999 187 2848
+1. Hook — dusk push-in on brand
+2. WhatsApp — hotel desk + giant phone, hard push into the chat
+3. Calendario — laptop agenda, event lands while camera pushes
+4. Excel — laptop sheet, new row while camera pushes
+5. CTA — dusk pull-out + phone
+
+Story: `story.es.json` · Scenes: `stages.html` · Pipeline: `render.mjs`
 
 ## Run
 
 ```bash
 cd ~/Documents/projects/llisar
-node scripts/demo-video/record.mjs
-node scripts/demo-video/assemble.mjs
+npm run demo:video
 ```
 
 Outputs:
 
 - `scripts/demo-video/out/llisar-demo-16x9.mp4`
 - `scripts/demo-video/out/llisar-demo-9x16.mp4`
-
-Optional local URL:
-
-```bash
-node scripts/demo-video/record.mjs --url http://127.0.0.1:5173
-```
+- Copied to LP: `public/video/llisar-demo-{16x9,9x16}.mp4` (hero “Ver el ejemplo” modal)
 
 Needs: `ffmpeg`, `ffprobe`, `uvx`, Playwright Chromium (`npx playwright install chromium`).
+
+Legacy LP-scroll scripts (`record.mjs` / `assemble.mjs`) remain for reference; `demo:video` uses the staged renderer.
