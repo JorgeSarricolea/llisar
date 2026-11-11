@@ -229,10 +229,16 @@
   width: 100%;
 }
 
-@media (min-width: 60rem) {
+/* Side-by-side from mid tablet so ~900–960px stops looking stacked+cropped */
+@media (min-width: 56rem) {
   .hero__grid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.85fr);
+    grid-template-columns: minmax(0, 1.18fr) minmax(16rem, 0.78fr);
     gap: var(--gap-columns);
+  }
+
+  .hero__copy h1 {
+    /* Keep each .line on one row without overflowing the copy column */
+    font-size: clamp(2.5rem, 5.8vw + 0.35rem, 6rem);
   }
 }
 
@@ -240,11 +246,16 @@
   display: grid;
   gap: 0.08em;
   margin-bottom: var(--space-lg);
-  text-wrap: balance;
 }
 
 .hero__copy .line {
   display: block;
+}
+
+@media (min-width: 40.01rem) {
+  .hero__copy .line {
+    white-space: nowrap;
+  }
 }
 
 .hero-actions {
@@ -1587,51 +1598,7 @@ html.js .hero__stage[data-enter] {
   }
 }
 
-/* Tablet: two-up then sheet full width */
-@media (min-width: 48rem) and (max-width: 69.99rem) {
-  .flow__track {
-    display: grid;
-    grid-template-columns: 1fr 28px 1fr;
-    grid-template-areas:
-      "a link1 b"
-      "c c c";
-    gap: var(--space-md) 0;
-    align-items: stretch;
-  }
-
-  .flow__beat:nth-child(1) {
-    grid-area: a;
-  }
-  .flow__link:nth-child(2) {
-    grid-area: link1;
-    width: 28px;
-    height: auto;
-    margin: 48px 0 0;
-    align-self: stretch;
-    justify-self: center;
-  }
-  .flow__link:nth-child(2)::after {
-    background: linear-gradient(
-      90deg,
-      var(--color-accent),
-      var(--color-settled)
-    );
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  .flow__link:nth-child(2).is-lit::after {
-    transform: scaleX(1);
-  }
-  .flow__beat:nth-child(3) {
-    grid-area: b;
-  }
-  .flow__link:nth-child(4) {
-    display: none;
-  }
-  .flow__beat:nth-child(5) {
-    grid-area: c;
-  }
-}
+/* Keep flow stacked until desktop — mid widths looked cramped side-by-side */
 
 /* Desktop: full horizontal flow */
 @media (min-width: 70rem) {
@@ -2317,8 +2284,8 @@ html.js .hero__stage[data-enter] {
   }
 }
 
-/* Tablet: stacked hero, mid-size device */
-@media (min-width: 40.01rem) and (max-width: 59.99rem) {
+/* Narrow tablet: stacked hero (below side-by-side) */
+@media (min-width: 40.01rem) and (max-width: 55.99rem) {
   .hero {
     min-height: 0;
     align-items: start;
@@ -2327,6 +2294,10 @@ html.js .hero__stage[data-enter] {
 
   .hero__grid {
     gap: var(--space-xl);
+  }
+
+  .hero__copy h1 {
+    font-size: clamp(2.35rem, 5.4vw + 0.4rem, 3.4rem);
   }
 
   .hero__stage {
@@ -2364,6 +2335,37 @@ html.js .hero__stage[data-enter] {
   }
 }
 
+/* Mid tablet / short landscape: keep phone fully in view beside copy */
+@media (min-width: 56rem) and (max-width: 69.99rem) {
+  .hero {
+    min-height: 0;
+    align-items: center;
+    padding-block: calc(72px + var(--space-md)) var(--space-xl);
+  }
+
+  .hero__stage {
+    justify-items: end;
+    width: 100%;
+  }
+
+  .device {
+    --device-w: min(100%, 280px);
+    --device-radius: 40px;
+    --device-bezel: 9px;
+    --device-screen-radius: 30px;
+  }
+}
+
+@media (max-height: 48rem) {
+  .hero {
+    min-height: 0;
+  }
+
+  .device {
+    --device-w: min(100%, 248px);
+  }
+}
+
 /* Keep last so mobile overrides win over desktop section rules above */
 @media (max-width: 40rem) {
   h1,
@@ -2377,22 +2379,30 @@ html.js .hero__stage[data-enter] {
   }
 
   .hero {
-    min-height: 0;
+    min-height: 100svh;
     align-items: start;
-    padding-block: calc(72px + var(--space-md)) var(--space-lg);
+    padding-block: calc(72px + var(--space-sm)) 0;
+    overflow: hidden;
   }
 
   .hero__copy h1 {
     font-size: clamp(2rem, 9vw, 2.75rem);
   }
 
+  .hero__copy .lead {
+    font-size: clamp(1rem, 3.6vw, 1.125rem);
+  }
+
   .hero__grid {
-    gap: var(--space-lg);
+    gap: var(--space-md);
+    min-height: calc(100svh - 72px);
+    align-content: start;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    margin-top: var(--space-md);
   }
 
   .hero-actions .btn {
@@ -2401,8 +2411,10 @@ html.js .hero__stage[data-enter] {
 
   .hero__stage {
     justify-items: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     width: 100%;
+    margin-top: auto;
+    padding-top: var(--space-md);
   }
 
   .seg {
@@ -2416,11 +2428,13 @@ html.js .hero__stage[data-enter] {
   }
 
   .device {
-    --device-w: min(72vw, 268px);
-    --device-radius: 34px;
-    --device-bezel: 8px;
-    --device-screen-radius: 26px;
-    padding: 0 7px;
+    /* Bigger phone; tuck bottom under the fold so the crop feels intentional */
+    --device-w: min(86vw, 300px);
+    --device-radius: 38px;
+    --device-bezel: 9px;
+    --device-screen-radius: 29px;
+    padding: 0 8px;
+    margin-bottom: -22%;
   }
 
   .device__island {
@@ -2623,5 +2637,110 @@ html.js .hero__stage[data-enter] {
   .footer-nav {
     width: 100%;
     gap: var(--space-sm) var(--space-md);
+  }
+}
+
+/* Demo video modal — 9:16 on mobile, 16:9 on tablet/desktop */
+.demo-dialog {
+  margin: auto;
+  border: 0;
+  padding: 0;
+  max-width: calc(100vw - 1.25rem);
+  max-height: calc(100dvh - 1.25rem);
+  background: transparent;
+  color: var(--color-ink);
+  z-index: var(--z-modal);
+}
+.demo-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+.demo-dialog::backdrop {
+  background: color-mix(in oklab, var(--color-paper) 78%, transparent);
+  backdrop-filter: blur(10px) saturate(1.1);
+}
+.demo-dialog__panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: calc(var(--radius-card) + 4px);
+  background: color-mix(in oklab, var(--color-paper-2) 92%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 12%, transparent);
+  box-shadow: 0 24px 64px color-mix(in oklab, #000 48%, transparent);
+}
+.demo-dialog__panel--landscape {
+  width: min(96vw, 1040px);
+}
+.demo-dialog__panel--portrait {
+  width: min(92vw, 420px);
+}
+.demo-dialog__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-inline: var(--space-2xs);
+}
+.demo-dialog__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+.demo-dialog__close {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--color-ink) 8%, transparent);
+  color: var(--color-ink);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color var(--dur-short) var(--ease-soft);
+}
+.demo-dialog__close:hover {
+  background: color-mix(in oklab, var(--color-ink) 16%, transparent);
+}
+.demo-dialog__stage {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: #05070c;
+}
+.demo-dialog__panel--landscape .demo-dialog__stage {
+  aspect-ratio: 16 / 9;
+}
+.demo-dialog__panel--portrait .demo-dialog__stage {
+  aspect-ratio: 9 / 16;
+  max-height: min(78dvh, 760px);
+}
+.demo-dialog__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #05070c;
+}
+
+@media (max-width: 40rem) {
+  .demo-dialog {
+    max-width: calc(100vw - 0.5rem);
+    max-height: calc(100dvh - 0.5rem);
+  }
+  .demo-dialog__panel {
+    padding: var(--space-2xs);
+    gap: var(--space-2xs);
+  }
+  .demo-dialog__panel--portrait {
+    width: min(96vw, 420px);
+  }
+  .demo-dialog__panel--portrait .demo-dialog__stage {
+    max-height: min(84dvh, 820px);
+  }
+  .demo-dialog__title {
+    font-size: var(--text-md);
   }
 }

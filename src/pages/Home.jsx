@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CONTACT_WA_URL } from '../contact.js'
+import DemoVideoDialog from '../DemoVideoDialog.jsx'
 import { AppLink } from '../routing.jsx'
 
 /**
@@ -704,8 +705,12 @@ function OpsFollow() {
 }
 
 export default function Home() {
+  const [demoOpen, setDemoOpen] = useState(false)
+  const closeDemo = useCallback(() => setDemoOpen(false), [])
+
   return (
     <main id="contenido">
+      <DemoVideoDialog open={demoOpen} onClose={closeDemo} />
       <section className="hero" id="top">
         <div className="hero__media" data-slot="hero" aria-hidden="true">
           <img
@@ -740,9 +745,15 @@ export default function Home() {
               >
                 Hablar con Llisar
               </a>
-              <a className="btn btn--ghost" href="#hilo">
+              <button
+                type="button"
+                className="btn btn--ghost"
+                aria-haspopup="dialog"
+                aria-expanded={demoOpen}
+                onClick={() => setDemoOpen(true)}
+              >
                 Ver el ejemplo
-              </a>
+              </button>
             </div>
           </div>
           <div className="hero__stage" id="hilo" data-enter="stage">
