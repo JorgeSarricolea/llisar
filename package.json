@@ -7,7 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gsc:sitemap": "node scripts/gsc-submit-sitemap.mjs",
+    "og:generate": "node scripts/generate-og.mjs",
+    "demo:record": "node scripts/demo-video/record.mjs",
+    "demo:assemble": "node scripts/demo-video/assemble.mjs",
+    "demo:video": "npm run demo:record && npm run demo:assemble"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -18,6 +23,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "oxlint": "^1.90.0",
+    "playwright": "^1.65.0",
     "puppeteer-core": "^25.17.0",
     "vite": "^8.3.6"
   }
