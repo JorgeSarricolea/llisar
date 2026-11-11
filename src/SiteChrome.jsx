@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CONTACT_WA_URL } from './contact.js'
+import { CONTACT_WA_LINK_PROPS } from './contact.js'
 import { AppLink, HomeSectionLink, useRoute } from './routing.jsx'
 
 export function SiteNav() {
@@ -37,8 +37,7 @@ export function SiteNav() {
           </AppLink>
           <a
             className="btn btn--accent"
-            href={CONTACT_WA_URL}
-            rel="noopener noreferrer"
+            {...CONTACT_WA_LINK_PROPS}
             onClick={close}
           >
             Hablar con Llisar
@@ -98,8 +97,7 @@ export function SiteNav() {
         </AppLink>
         <a
           className="btn btn--accent"
-          href={CONTACT_WA_URL}
-          rel="noopener noreferrer"
+          {...CONTACT_WA_LINK_PROPS}
           onClick={close}
         >
           Hablar con Llisar

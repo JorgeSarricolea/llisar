@@ -1,4 +1,4 @@
-import { CONTACT_PHONE_DISPLAY, CONTACT_WA_URL } from '../contact.js'
+import { CONTACT_PHONE_DISPLAY, CONTACT_WA_LINK_PROPS } from '../contact.js'
 
 export default function Contact() {
   return (
@@ -21,7 +21,7 @@ export default function Contact() {
               <div>
                 <dt>WhatsApp</dt>
                 <dd>
-                  <a href={CONTACT_WA_URL} rel="noopener noreferrer">
+                  <a {...CONTACT_WA_LINK_PROPS}>
                     {CONTACT_PHONE_DISPLAY}
                   </a>
                 </dd>
@@ -32,11 +32,7 @@ export default function Contact() {
               </div>
             </dl>
             <p className="contact-actions">
-              <a
-                className="btn btn--accent"
-                href={CONTACT_WA_URL}
-                rel="noopener noreferrer"
-              >
+              <a className="btn btn--accent" {...CONTACT_WA_LINK_PROPS}>
                 Escribir por WhatsApp
               </a>
             </p>

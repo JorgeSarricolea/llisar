@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { CONTACT_WA_URL } from '../contact.js'
+import { CONTACT_WA_LINK_PROPS } from '../contact.js'
 import DemoVideoDialog from '../DemoVideoDialog.jsx'
 import { AppLink } from '../routing.jsx'
 
@@ -694,7 +694,7 @@ function OpsFollow() {
 
         <p className="flow__cta">
           ¿Otro paso o un proceso distinto?{' '}
-          <a href={CONTACT_WA_URL} rel="noopener noreferrer">
+          <a {...CONTACT_WA_LINK_PROPS}>
             Escríbenos
           </a>{' '}
           y lo armamos a tu medida.
@@ -738,11 +738,7 @@ export default function Home() {
               califican y dejan la visita o la reserva lista.
             </p>
             <div className="hero-actions" data-enter-item>
-              <a
-                className="btn btn--accent"
-                href={CONTACT_WA_URL}
-                rel="noopener noreferrer"
-              >
+              <a className="btn btn--accent" {...CONTACT_WA_LINK_PROPS}>
                 Hablar con Llisar
               </a>
               <button
@@ -859,11 +855,7 @@ export default function Home() {
               Inmobiliaria o turismo. Una llamada corta para ver si encaja.
             </p>
             <div className="contact-actions">
-              <a
-                className="btn btn--accent"
-                href={CONTACT_WA_URL}
-                rel="noopener noreferrer"
-              >
+              <a className="btn btn--accent" {...CONTACT_WA_LINK_PROPS}>
                 Hablar con Llisar
               </a>
               <AppLink className="btn btn--ghost" to="/nosotros">

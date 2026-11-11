@@ -1,4 +1,4 @@
-import { CONTACT_WA_URL } from '../contact.js'
+import { CONTACT_WA_LINK_PROPS } from '../contact.js'
 import { AppLink } from '../routing.jsx'
 
 export default function About() {
@@ -108,11 +108,7 @@ export default function About() {
               Cuéntanos qué leads se te acumulan o se te enfrían.
             </p>
             <div className="contact-actions">
-              <a
-                className="btn btn--accent"
-                href={CONTACT_WA_URL}
-                rel="noopener noreferrer"
-              >
+              <a className="btn btn--accent" {...CONTACT_WA_LINK_PROPS}>
                 Hablar con Llisar
               </a>
             </div>
