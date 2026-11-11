@@ -1,10 +1,7 @@
 # Llisar logo (production)
 
-**Mark:** L + S ribbon (round 14)
+**Mark:** Broken spine (round 12)
 
-- Monument L in ink `#F4F0E6`
-
-- Copper S ribbon `#E4A15C`
-
-- Floating glyph on night `#121A28`
-
+- Ink `#F4F0E6` monument bars + L foot
+- Copper mid bar `#E4A15C` floats (spine gap)
+- Favicon on night `#121A28`
