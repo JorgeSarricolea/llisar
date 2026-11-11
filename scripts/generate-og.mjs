@@ -1,5 +1,5 @@
 /**
- * Capture the live LP WhatsApp device and composite public/og.jpg (1200×630).
+ * Capture the live LP WhatsApp device and composite public/share.jpg (1200×630).
  * Usage: npm run og:generate
  */
 import { chromium } from 'playwright'
@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '..')
-const outPath = path.join(root, 'public', 'og.jpg')
+const outPath = path.join(root, 'public', 'share.jpg')
+const legacyOgPath = path.join(root, 'public', 'og.jpg')
 const phonePng = path.join(root, 'public', '.og-phone.png')
 const frameHtml = path.join(root, 'public', '.og-frame.html')
 const framePng = path.join(root, 'public', '.og-frame.png')
@@ -180,4 +181,5 @@ if (magick.status !== 0) {
   process.exit(magick.status ?? 1)
 }
 
+fs.copyFileSync(outPath, legacyOgPath)
 console.log(`Wrote ${outPath}`)

@@ -2,7 +2,7 @@ import { CONTACT_PHONE_E164, CONTACT_WA_URL } from './contact.js'
 
 export const SITE_URL = 'https://llisar.com'
 export const SITE_NAME = 'Llisar'
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og.jpg?v=20261111b`
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/share.jpg`
 export const DEFAULT_OG_ALT =
   'Llisar: agentes de IA en WhatsApp para inmobiliarias y turismo'
 
