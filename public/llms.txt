@@ -10,7 +10,16 @@ Base en Mérida, México. Clientes en todo el mundo.
 - Home: https://llisar.com/
 - Quiénes somos: https://llisar.com/nosotros
 - Contacto: https://llisar.com/contacto
+- Blog: https://llisar.com/blog
 - Sitemap: https://llisar.com/sitemap.xml
+
+## Blog posts
+
+- Cómo atender leads de inmobiliaria por WhatsApp: https://llisar.com/blog/como-atender-leads-inmobiliaria-whatsapp
+- Agente de IA en WhatsApp para turismo: cuándo conviene: https://llisar.com/blog/agente-ia-whatsapp-turismo-cuando-conviene
+- Calificar leads inmobiliarios por WhatsApp: https://llisar.com/blog/calificar-leads-inmobiliarios-whatsapp
+- Agendar visitas desde WhatsApp: https://llisar.com/blog/agendar-visitas-desde-whatsapp
+- Errores comunes al atender WhatsApp: https://llisar.com/blog/errores-atencion-whatsapp-inmobiliaria-turismo
 
 ## Contact
 

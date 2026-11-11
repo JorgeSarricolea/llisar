@@ -4,6 +4,8 @@ import { Seo } from './Seo.jsx'
 import { RouteProvider, useRoute } from './routing.jsx'
 import { SiteFooter, SiteNav } from './SiteChrome.jsx'
 import About from './pages/About.jsx'
+import Blog from './pages/Blog.jsx'
+import BlogPost from './pages/BlogPost.jsx'
 import Contact from './pages/Contact.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -13,6 +15,11 @@ function Routes() {
 
   if (path === '/nosotros') return <About />
   if (path === '/contacto') return <Contact />
+  if (path === '/blog') return <Blog />
+  if (path.startsWith('/blog/')) {
+    const slug = path.slice('/blog/'.length).replace(/\/$/, '')
+    if (slug && !slug.includes('/')) return <BlogPost slug={slug} />
+  }
   if (path === '/' || path === '') return <Home />
   return <NotFound />
 }

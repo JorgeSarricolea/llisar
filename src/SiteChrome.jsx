@@ -12,6 +12,7 @@ export function SiteNav() {
     <header className="site-nav">
       <div className="container nav-row">
         <AppLink className="wordmark" to="/" onClick={close}>
+          <img className="wordmark__mark" src="/mark.svg" alt="" width="28" height="28" />
           Llisar
         </AppLink>
         <nav className="nav-links" aria-label="Principal">
@@ -34,6 +35,9 @@ export function SiteNav() {
           )}
           <AppLink to="/nosotros" onClick={close}>
             Nosotros
+          </AppLink>
+          <AppLink to="/blog" onClick={close}>
+            Blog
           </AppLink>
           <a
             className="btn btn--accent"
@@ -95,6 +99,9 @@ export function SiteNav() {
         <AppLink to="/nosotros" onClick={close}>
           Nosotros
         </AppLink>
+        <AppLink to="/blog" onClick={close}>
+          Blog
+        </AppLink>
         <a
           className="btn btn--accent"
           {...CONTACT_WA_LINK_PROPS}
@@ -112,10 +119,12 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="container footer-bottom">
         <AppLink className="wordmark wordmark--footer" to="/">
+          <img className="wordmark__mark" src="/mark.svg" alt="" width="24" height="24" />
           Llisar
         </AppLink>
         <nav className="footer-nav" aria-label="Pie de página">
           <AppLink to="/nosotros">Nosotros</AppLink>
+          <AppLink to="/blog">Blog</AppLink>
           <AppLink to="/contacto">Contacto</AppLink>
           <HomeSectionLink id="sectores">Sectores</HomeSectionLink>
           <HomeSectionLink id="que-hace">Qué hace</HomeSectionLink>

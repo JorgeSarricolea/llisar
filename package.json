@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-build.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
+    "seo:build": "node scripts/seo-build.mjs",
     "gsc:sitemap": "node scripts/gsc-submit-sitemap.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs",
     "og:generate": "node scripts/generate-og.mjs",
     "demo:record": "node scripts/demo-video/record.mjs",
     "demo:assemble": "node scripts/demo-video/assemble.mjs",

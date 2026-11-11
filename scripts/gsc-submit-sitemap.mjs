@@ -79,10 +79,36 @@ async function submitViaApi() {
   console.log("Submitted", SITEMAP_URL, "for", SITE_URL);
 }
 
+const PAGES = [
+  "https://llisar.com/",
+  "https://llisar.com/nosotros",
+  "https://llisar.com/contacto",
+  "https://llisar.com/blog",
+  "https://llisar.com/blog/como-atender-leads-inmobiliaria-whatsapp",
+  "https://llisar.com/blog/agente-ia-whatsapp-turismo-cuando-conviene",
+  "https://llisar.com/blog/calificar-leads-inmobiliarios-whatsapp",
+  "https://llisar.com/blog/agendar-visitas-desde-whatsapp",
+  "https://llisar.com/blog/errores-atencion-whatsapp-inmobiliaria-turismo",
+];
+
 if (useApi) {
   await submitViaApi();
 } else {
   console.log("Opening Search Console sitemaps for", SITE_URL);
   console.log("If the sitemap is not listed, add:", SITEMAP_URL);
+  console.log("\nAlso request indexing (URL Inspection) for:");
+  for (const u of PAGES) console.log(" -", u);
   openBrowser(GSC_UI);
+  // URL inspection deep-link for the new blog hub
+  openBrowser(
+    "https://accounts.google.com/AccountChooser?Email=" +
+      encodeURIComponent(PERSONAL_GOOGLE) +
+      "&continue=" +
+      encodeURIComponent(
+        "https://search.google.com/search-console/inspect?resource_id=" +
+          encodeURIComponent(SITE_URL) +
+          "&id=" +
+          encodeURIComponent("https://llisar.com/blog"),
+      ),
+  );
 }

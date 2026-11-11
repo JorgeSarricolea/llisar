@@ -1,4 +1,5 @@
 import { CONTACT_PHONE_E164, CONTACT_WA_URL } from './contact.js'
+import { getAllPosts, getPostBySlug } from './blog/posts.js'
 
 export const SITE_URL = 'https://llisar.com'
 export const SITE_NAME = 'Llisar'
@@ -26,6 +27,12 @@ export const PAGES = {
     description:
       '¿Qué se te escapa hoy en WhatsApp? Escríbenos al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
     path: '/contacto',
+  },
+  '/blog': {
+    title: 'Guías WhatsApp inmobiliaria y turismo | Blog Llisar',
+    description:
+      'Guías prácticas para atender leads y huéspedes por WhatsApp: responder rápido, calificar, agendar visitas y evitar errores que enfrían la venta.',
+    path: '/blog',
   },
 }
 
@@ -70,9 +77,35 @@ function absoluteUrl(path) {
   return `${SITE_URL}${path}`
 }
 
+function resolvePage(path) {
+  if (PAGES[path]) return { kind: 'static', page: PAGES[path] }
+  if (path.startsWith('/blog/')) {
+    const slug = path.slice('/blog/'.length).replace(/\/$/, '')
+    const post = getPostBySlug(slug)
+    if (!post) return null
+    return {
+      kind: 'post',
+      page: {
+        title: post.seoTitle || `${post.title} | Llisar`,
+        description: post.description,
+        path: post.path,
+        keywords: post.keywords,
+        date: post.date,
+        readingTime: post.readingTime,
+        articleTitle: post.title,
+        coverImage: post.coverImage,
+        coverImageAlt: post.coverImageAlt,
+        wordCount: post.wordCount,
+      },
+      post,
+    }
+  }
+  return null
+}
+
 export function applyPageSeo(path) {
-  const page = PAGES[path] || null
-  if (!page) {
+  const resolved = resolvePage(path)
+  if (!resolved) {
     document.title = 'Página no encontrada | Llisar'
     upsertMeta('name', 'robots', 'noindex, follow')
     upsertMeta('name', 'description', 'La página que buscas no existe en Llisar.')
@@ -80,6 +113,7 @@ export function applyPageSeo(path) {
     return
   }
 
+  const { page } = resolved
   const url = absoluteUrl(page.path)
   const robots = document.head.querySelector('meta[name="robots"]')
   if (robots) robots.remove()
@@ -92,28 +126,43 @@ export function applyPageSeo(path) {
     'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   )
   upsertMeta('name', 'author', SITE_NAME)
+  if (page.keywords?.length) {
+    upsertMeta('name', 'keywords', page.keywords.join(', '))
+  }
   upsertLink('canonical', url)
   upsertLink('alternate', url, { hreflang: SITE_LOCALE.replace('_', '-') })
   upsertLink('alternate', url, { hreflang: 'x-default' })
 
-  upsertMeta('property', 'og:type', page.path === '/' ? 'website' : 'article')
+  const ogType = resolved.kind === 'post' ? 'article' : page.path === '/' ? 'website' : 'article'
+  const ogImage = page.coverImage
+    ? absoluteUrl(page.coverImage)
+    : DEFAULT_OG_IMAGE
+  const ogAlt = page.coverImageAlt || DEFAULT_OG_ALT
+  upsertMeta('property', 'og:type', ogType)
   upsertMeta('property', 'og:site_name', SITE_NAME)
   upsertMeta('property', 'og:locale', SITE_LOCALE)
   upsertMeta('property', 'og:title', page.title)
   upsertMeta('property', 'og:description', page.description)
   upsertMeta('property', 'og:url', url)
-  upsertMeta('property', 'og:image', DEFAULT_OG_IMAGE)
-  upsertMeta('property', 'og:image:secure_url', DEFAULT_OG_IMAGE)
+  upsertMeta('property', 'og:image', ogImage)
+  upsertMeta('property', 'og:image:secure_url', ogImage)
   upsertMeta('property', 'og:image:type', 'image/jpeg')
   upsertMeta('property', 'og:image:width', '1200')
   upsertMeta('property', 'og:image:height', '630')
-  upsertMeta('property', 'og:image:alt', DEFAULT_OG_ALT)
+  upsertMeta('property', 'og:image:alt', ogAlt)
+
+  if (resolved.kind === 'post') {
+    upsertMeta('property', 'article:published_time', `${page.date}T12:00:00-06:00`)
+    upsertMeta('property', 'article:modified_time', `${page.date}T12:00:00-06:00`)
+    upsertMeta('property', 'article:section', 'WhatsApp')
+    if (page.keywords[0]) upsertMeta('property', 'article:tag', page.keywords[0])
+  }
 
   upsertMeta('name', 'twitter:card', 'summary_large_image')
   upsertMeta('name', 'twitter:title', page.title)
   upsertMeta('name', 'twitter:description', page.description)
-  upsertMeta('name', 'twitter:image', DEFAULT_OG_IMAGE)
-  upsertMeta('name', 'twitter:image:alt', DEFAULT_OG_ALT)
+  upsertMeta('name', 'twitter:image', ogImage)
+  upsertMeta('name', 'twitter:image:alt', ogAlt)
 
   const organization = {
     '@type': 'Organization',
@@ -165,10 +214,10 @@ export function applyPageSeo(path) {
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: { '@id': `${SITE_URL}/#organization` },
     inLanguage: SITE_LANGUAGE,
-    dateModified: '2026-11-11',
+    dateModified: page.date || '2026-11-11',
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: DEFAULT_OG_IMAGE,
+      url: ogImage,
       width: 1200,
       height: 630,
     },
@@ -198,55 +247,91 @@ export function applyPageSeo(path) {
       },
     })
 
+  }
+
+  if (page.path === '/blog') {
     graph.push({
-      '@type': 'FAQPage',
-      '@id': `${SITE_URL}/#faq`,
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: '¿Qué hace un agente de IA de Llisar en WhatsApp?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Contesta, califica y deja la visita o la reserva lista. También puede agendar en el calendario y registrar la fila en Excel o CRM.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: '¿Para quién es Llisar?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Para inmobiliarias y turismo que ya viven en WhatsApp, con pico de leads y procesos repetitivos que el equipo no alcanza a cubrir bien.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: '¿Cómo empiezan a trabajar conmigo?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Empezamos por cómo atiendes hoy. Luego el guion y el tono de tu marca, la conexión a calendario o CRM, y pruebas con mensajes reales.',
-          },
-        },
-      ],
+      '@type': 'CollectionPage',
+      '@id': `${url}#collection`,
+      url,
+      name: page.title,
+      description: page.description,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      hasPart: getAllPosts().map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        url: absoluteUrl(p.path),
+        datePublished: p.date,
+        description: p.description,
+      })),
+    })
+  }
+
+  if (resolved.kind === 'post') {
+    graph.push({
+      '@type': 'BlogPosting',
+      '@id': `${url}#article`,
+      headline: page.articleTitle,
+      description: page.description,
+      datePublished: page.date,
+      dateModified: page.date,
+      inLanguage: SITE_LANGUAGE,
+      author: { '@id': `${SITE_URL}/#organization` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      mainEntityOfPage: { '@id': `${url}#webpage` },
+      image: {
+        '@type': 'ImageObject',
+        url: ogImage,
+        width: 1200,
+        height: 630,
+      },
+      keywords: page.keywords.join(', '),
+      wordCount: page.wordCount,
+      timeRequired: `PT${parseInt(page.readingTime, 10) || 6}M`,
     })
   }
 
   if (page.path !== '/') {
+    const crumbs = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: `${SITE_URL}/`,
+      },
+    ]
+
+    const crumbName = {
+      '/nosotros': 'Quiénes somos',
+      '/contacto': 'Contacto',
+      '/blog': 'Blog',
+    }
+
+    if (resolved.kind === 'post') {
+      crumbs.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_URL}/blog`,
+      })
+      crumbs.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: page.articleTitle,
+        item: url,
+      })
+    } else {
+      crumbs.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: crumbName[page.path] || page.title,
+        item: url,
+      })
+    }
+
     graph.push({
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Inicio',
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: page.path === '/nosotros' ? 'Quiénes somos' : 'Contacto',
-          item: url,
-        },
-      ],
+      itemListElement: crumbs,
     })
   }
 

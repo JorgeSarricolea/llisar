@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://llisar.com/</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://llisar.com/nosotros</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://llisar.com/contacto</loc>
     <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog/como-atender-leads-inmobiliaria-whatsapp</loc>
+    <lastmod>2026-11-11</lastmod>
+    <image:image>
+      <image:loc>https://llisar.com/blog/atender-leads.jpg</image:loc>
+      <image:title>Cómo atender leads de inmobiliaria por WhatsApp sin perder ventas</image:title>
+      <image:caption>Smartphone en la mano: el canal donde llegan y se enfrían los leads inmobiliarios</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog/agente-ia-whatsapp-turismo-cuando-conviene</loc>
+    <lastmod>2026-11-10</lastmod>
+    <image:image>
+      <image:loc>https://llisar.com/blog/turismo-agente.jpg</image:loc>
+      <image:title>Agente de IA en WhatsApp para turismo: cuándo sí conviene</image:title>
+      <image:caption>Resort al atardecer: el tipo de operación turística que vive en WhatsApp fuera de horario</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog/calificar-leads-inmobiliarios-whatsapp</loc>
+    <lastmod>2026-11-09</lastmod>
+    <image:image>
+      <image:loc>https://llisar.com/blog/calificar-leads.jpg</image:loc>
+      <image:title>Cómo calificar leads inmobiliarios por WhatsApp (checklist)</image:title>
+      <image:caption>Llaves de casa sobre contrato: calificar antes de invertir tiempo del asesor</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog/agendar-visitas-desde-whatsapp</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://llisar.com/blog/agendar-visitas.jpg</image:loc>
+      <image:title>Cómo agendar visitas y citas desde WhatsApp sin fricción</image:title>
+      <image:caption>Fachada de propiedad: del chat a la visita agendada en el calendario</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://llisar.com/blog/errores-atencion-whatsapp-inmobiliaria-turismo</loc>
+    <lastmod>2026-11-07</lastmod>
+    <image:image>
+      <image:loc>https://llisar.com/blog/errores-whatsapp.jpg</image:loc>
+      <image:title>Errores comunes al atender WhatsApp en inmobiliaria y turismo</image:title>
+      <image:caption>Atención presencial y por chat: los errores de proceso que enfrían leads y huéspedes</image:caption>
+    </image:image>
   </url>
 </urlset>

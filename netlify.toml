@@ -8,6 +8,8 @@
   to = "/index.html"
   status = 200
 
+# SPA fallbacks only when no prerendered HTML exists (seo-build writes
+# /nosotros/index.html, /nosotros.html, /blog/<slug>.html, etc.).
 [[redirects]]
   from = "/nosotros"
   to = "/index.html"
@@ -15,6 +17,16 @@
 
 [[redirects]]
   from = "/contacto"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/*"
   to = "/index.html"
   status = 200
 

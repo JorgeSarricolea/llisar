@@ -28,5 +28,9 @@ dist-ssr
 # Local Netlify folder
 .netlify
 
+# IndexNow host key (public/<key>.txt is deployed; this file is local-only)
+.indexnow-key
+
 # Demo video render artifacts
 scripts/demo-video/out/
+logo-exploration/
