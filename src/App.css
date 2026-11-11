@@ -2396,8 +2396,8 @@ html.js .hero__stage[data-enter] {
   .hero {
     min-height: 100svh;
     align-items: start;
-    padding-block: calc(72px + var(--space-sm)) 0;
-    overflow: hidden;
+    padding-block: calc(72px + var(--space-sm)) var(--space-xl);
+    overflow: visible;
   }
 
   .hero__copy h1 {
@@ -2443,13 +2443,12 @@ html.js .hero__stage[data-enter] {
   }
 
   .device {
-    /* Bigger phone; tuck bottom under the fold so the crop feels intentional */
-    --device-w: min(86vw, 300px);
+    --device-w: min(78vw, 268px);
     --device-radius: 38px;
     --device-bezel: 9px;
     --device-screen-radius: 29px;
     padding: 0 8px;
-    margin-bottom: -22%;
+    margin-bottom: 0;
   }
 
   .device__island {
