@@ -5,24 +5,26 @@ export const SITE_NAME = 'Llisar'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/share.jpg`
 export const DEFAULT_OG_ALT =
   'Llisar: agentes de IA en WhatsApp para inmobiliarias y turismo'
+export const SITE_LOCALE = 'es_MX'
+export const SITE_LANGUAGE = 'es-MX'
 
 export const PAGES = {
   '/': {
     title: 'Agentes de IA en WhatsApp para inmobiliarias y turismo | Llisar',
     description:
-      'Cuando llegan muchos leads o es fuera de horario, Llisar diseña agentes de IA en WhatsApp que califican, agendan y registran para inmobiliarias y turismo.',
+      'Agentes de IA en WhatsApp para inmobiliarias y turismo: contestan, califican y dejan la visita o la reserva lista, también fuera de horario.',
     path: '/',
   },
   '/nosotros': {
-    title: 'Nosotros | Llisar',
+    title: 'Quiénes somos | Agentes de IA en WhatsApp · Llisar',
     description:
-      'Llisar diseña agentes de IA en WhatsApp para inmobiliarias y turismo. Base en Mérida desde 2025, clientes en todo el mundo.',
+      'Llisar diseña agentes de IA en WhatsApp con la voz de tu marca. Base en Mérida desde 2025; inmobiliarias y turismo en todo el mundo.',
     path: '/nosotros',
   },
   '/contacto': {
-    title: 'Contacto | Hablar con Llisar',
+    title: 'Contacto | Hablar con Llisar por WhatsApp',
     description:
-      '¿Qué se te escapa hoy en WhatsApp? Escríbenos al +52 999 187 2848. Base en Mérida, trabajo remoto.',
+      '¿Qué se te escapa hoy en WhatsApp? Escríbenos al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
     path: '/contacto',
   },
 }
@@ -38,11 +40,15 @@ function upsertMeta(attr, key, content) {
   el.setAttribute('content', content)
 }
 
-function upsertLink(rel, href) {
-  let el = document.head.querySelector(`link[rel="${rel}"]`)
+function upsertLink(rel, href, attrs = {}) {
+  const extra = Object.entries(attrs)
+    .map(([k, v]) => `[${k}="${v}"]`)
+    .join('')
+  let el = document.head.querySelector(`link[rel="${rel}"]${extra}`)
   if (!el) {
     el = document.createElement('link')
     el.setAttribute('rel', rel)
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v)
     document.head.appendChild(el)
   }
   el.setAttribute('href', href)
@@ -59,16 +65,22 @@ function upsertJsonLd(id, data) {
   el.textContent = JSON.stringify(data)
 }
 
+function absoluteUrl(path) {
+  if (path === '/') return `${SITE_URL}/`
+  return `${SITE_URL}${path}`
+}
+
 export function applyPageSeo(path) {
   const page = PAGES[path] || null
   if (!page) {
     document.title = 'Página no encontrada | Llisar'
     upsertMeta('name', 'robots', 'noindex, follow')
     upsertMeta('name', 'description', 'La página que buscas no existe en Llisar.')
+    upsertLink('canonical', `${SITE_URL}/404.html`)
     return
   }
 
-  const url = `${SITE_URL}${page.path === '/' ? '/' : page.path}`
+  const url = absoluteUrl(page.path)
   const robots = document.head.querySelector('meta[name="robots"]')
   if (robots) robots.remove()
 
@@ -79,20 +91,19 @@ export function applyPageSeo(path) {
     'robots',
     'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   )
-  upsertMeta(
-    'name',
-    'keywords',
-    'agentes de IA WhatsApp, WhatsApp business, inmobiliarias, turismo, consultoría IA, Llisar',
-  )
+  upsertMeta('name', 'author', SITE_NAME)
   upsertLink('canonical', url)
+  upsertLink('alternate', url, { hreflang: SITE_LOCALE.replace('_', '-') })
+  upsertLink('alternate', url, { hreflang: 'x-default' })
 
   upsertMeta('property', 'og:type', page.path === '/' ? 'website' : 'article')
   upsertMeta('property', 'og:site_name', SITE_NAME)
-  upsertMeta('property', 'og:locale', 'es_MX')
+  upsertMeta('property', 'og:locale', SITE_LOCALE)
   upsertMeta('property', 'og:title', page.title)
   upsertMeta('property', 'og:description', page.description)
   upsertMeta('property', 'og:url', url)
   upsertMeta('property', 'og:image', DEFAULT_OG_IMAGE)
+  upsertMeta('property', 'og:image:secure_url', DEFAULT_OG_IMAGE)
   upsertMeta('property', 'og:image:type', 'image/jpeg')
   upsertMeta('property', 'og:image:width', '1200')
   upsertMeta('property', 'og:image:height', '630')
@@ -111,9 +122,22 @@ export function applyPageSeo(path) {
     url: SITE_URL,
     description:
       'Llisar diseña agentes de IA en WhatsApp para inmobiliarias y turismo.',
-    logo: `${SITE_URL}/favicon.svg`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/favicon.svg`,
+    },
     image: DEFAULT_OG_IMAGE,
     telephone: CONTACT_PHONE_E164,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mérida',
+      addressRegion: 'Yucatán',
+      addressCountry: 'MX',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Mexico',
+    },
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: CONTACT_PHONE_E164,
@@ -128,7 +152,7 @@ export function applyPageSeo(path) {
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
-    inLanguage: 'es-MX',
+    inLanguage: SITE_LANGUAGE,
     publisher: { '@id': `${SITE_URL}/#organization` },
   }
 
@@ -140,7 +164,8 @@ export function applyPageSeo(path) {
     description: page.description,
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: { '@id': `${SITE_URL}/#organization` },
-    inLanguage: 'es-MX',
+    inLanguage: SITE_LANGUAGE,
+    dateModified: '2026-11-11',
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: DEFAULT_OG_IMAGE,
@@ -158,10 +183,50 @@ export function applyPageSeo(path) {
       name: SITE_NAME,
       url: SITE_URL,
       description: page.description,
-      areaServed: 'MX',
-      serviceType: 'Agentes de IA en WhatsApp',
+      areaServed: ['MX', 'Worldwide'],
+      serviceType: [
+        'Agentes de IA en WhatsApp',
+        'Automatización para inmobiliarias',
+        'Automatización para turismo',
+      ],
       provider: { '@id': `${SITE_URL}/#organization` },
       image: DEFAULT_OG_IMAGE,
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: CONTACT_WA_URL,
+        availableLanguage: ['es', 'en'],
+      },
+    })
+
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${SITE_URL}/#faq`,
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Qué hace un agente de IA de Llisar en WhatsApp?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Contesta, califica y deja la visita o la reserva lista. También puede agendar en el calendario y registrar la fila en Excel o CRM.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Para quién es Llisar?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Para inmobiliarias y turismo que ya viven en WhatsApp, con pico de leads y procesos repetitivos que el equipo no alcanza a cubrir bien.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cómo empiezan a trabajar conmigo?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Empezamos por cómo atiendes hoy. Luego el guion y el tono de tu marca, la conexión a calendario o CRM, y pruebas con mensajes reales.',
+          },
+        },
+      ],
     })
   }
 
@@ -173,12 +238,12 @@ export function applyPageSeo(path) {
           '@type': 'ListItem',
           position: 1,
           name: 'Inicio',
-          item: SITE_URL + '/',
+          item: `${SITE_URL}/`,
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: page.path === '/nosotros' ? 'Nosotros' : 'Contacto',
+          name: page.path === '/nosotros' ? 'Quiénes somos' : 'Contacto',
           item: url,
         },
       ],

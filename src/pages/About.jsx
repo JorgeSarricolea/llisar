@@ -6,7 +6,7 @@ export default function About() {
     <main id="contenido" className="page">
       <section className="page-hero page-hero--about">
         <div className="container">
-          <h1>Nosotros</h1>
+          <h1>Quiénes somos</h1>
         </div>
       </section>
 
@@ -15,7 +15,7 @@ export default function About() {
           <figure className="about-hero-fig">
             <img
               src="/photos/about.jpg"
-              alt=""
+              alt="Interior con luz cálida, el tipo de ambiente donde operan equipos de inmobiliaria y turismo"
               width="1920"
               height="1280"
               decoding="async"

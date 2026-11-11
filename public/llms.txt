@@ -1,0 +1,25 @@
+# Llisar
+
+> Agentes de IA en WhatsApp para inmobiliarias y turismo.
+
+Llisar diseña agentes que contestan, califican y dejan la visita o la reserva lista.
+Base en Mérida, México. Clientes en todo el mundo.
+
+## Site
+
+- Home: https://llisar.com/
+- Quiénes somos: https://llisar.com/nosotros
+- Contacto: https://llisar.com/contacto
+- Sitemap: https://llisar.com/sitemap.xml
+
+## Contact
+
+- WhatsApp: +52 999 187 2848
+- Prefill: Hola — me interesa un agente de IA en WhatsApp para mi negocio.
+
+## Offer
+
+- Niche: inmobiliarias y turismo
+- Channel: WhatsApp
+- Outcomes: calificar leads, agendar visitas o check-ins, registrar en calendario / Excel / CRM
+- Approach: proceso real del cliente → guion con tono de marca → conexión → pruebas con mensajes reales
