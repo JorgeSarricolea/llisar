@@ -22,8 +22,7 @@ export default function Contact() {
           <p className="fig">Contacto</p>
           <h1>¿Qué se te escapa hoy en WhatsApp?</h1>
           <p className="lead">
-            Inmobiliaria o turismo. Cuéntanos cómo atiendes hoy — el mensaje
-            llega a {CONTACT_EMAIL}.
+            Inmobiliaria o turismo. Cuéntanos cómo atiendes hoy.
           </p>
         </div>
       </section>
@@ -35,7 +34,7 @@ export default function Contact() {
               <div className="contact-form-done" role="status">
                 <h2>Mensaje enviado</h2>
                 <p className="section-lead contact-lead">
-                  Gracias. Llegó a {CONTACT_EMAIL}. Te respondemos pronto.
+                  Gracias. Te respondemos pronto.
                 </p>
               </div>
             ) : (
@@ -145,7 +144,7 @@ export default function Contact() {
                   </label>
 
                   <button className="btn btn--accent" type="submit">
-                    Enviar a {CONTACT_EMAIL}
+                    Enviar
                   </button>
                 </form>
               </>
