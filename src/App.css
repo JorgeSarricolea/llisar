@@ -1935,6 +1935,13 @@ html.js .hero__stage[data-enter] {
   padding-block: var(--section-gap-s) var(--section-gap);
 }
 
+.contact-layout {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
 .contact-panel {
   padding: var(--space-2xl);
   border-radius: calc(var(--radius-card) + 4px);
@@ -1947,6 +1954,10 @@ html.js .hero__stage[data-enter] {
   align-content: center;
 }
 
+.contact-panel--form {
+  align-content: start;
+}
+
 .contact-lead {
   margin-top: 0;
 }
@@ -1955,6 +1966,73 @@ html.js .hero__stage[data-enter] {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+}
+
+.contact-form__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.contact-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.contact-form__field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.contact-form__field span {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-card);
+  border: var(--rule-hair) solid var(--color-rule-2);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: var(--text-md);
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+  outline: 2px solid color-mix(in oklab, var(--color-accent) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.contact-form__field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.contact-form__honey {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.contact-form-done h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
 }
 
 .fill-note {
@@ -2272,6 +2350,16 @@ html.js .hero__stage[data-enter] {
 
 .footer-legal p {
   margin: 0;
+}
+
+.footer-legal a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.footer-legal a:hover {
+  color: var(--color-ink);
 }
 
 .legal {
@@ -2611,6 +2699,10 @@ html.js .hero__stage[data-enter] {
     padding-block: var(--space-lg);
   }
 
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
   .contact-panel {
     padding: var(--space-xl) var(--space-lg);
     min-height: 0;
@@ -2621,7 +2713,8 @@ html.js .hero__stage[data-enter] {
     align-items: stretch;
   }
 
-  .contact-actions .btn {
+  .contact-actions .btn,
+  .contact-form .btn {
     width: 100%;
   }
 

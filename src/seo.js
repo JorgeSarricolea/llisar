@@ -1,4 +1,4 @@
-import { CONTACT_PHONE_E164, CONTACT_WA_URL } from './contact.js'
+import { CONTACT_EMAIL, CONTACT_PHONE_E164, CONTACT_WA_URL } from './contact.js'
 import { getAllPosts, getPostBySlug } from './blog/posts.js'
 
 export const SITE_URL = 'https://llisar.com'
@@ -23,9 +23,9 @@ export const PAGES = {
     path: '/nosotros',
   },
   '/contacto': {
-    title: 'Contacto | Hablar con Llisar por WhatsApp',
+    title: 'Contacto | Hablar con Llisar',
     description:
-      '¿Qué se te escapa hoy en WhatsApp? Escríbenos al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
+      'Escríbenos a hola@llisar.com o por WhatsApp al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
     path: '/contacto',
   },
   '/blog': {
@@ -190,10 +190,12 @@ export function applyPageSeo(path) {
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: CONTACT_PHONE_E164,
+      email: CONTACT_EMAIL,
       contactType: 'sales',
       availableLanguage: ['es', 'en'],
       url: CONTACT_WA_URL,
     },
+    email: CONTACT_EMAIL,
   }
 
   const website = {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CONTACT_WA_LINK_PROPS } from './contact.js'
+import { CONTACT_EMAIL, CONTACT_MAIL_LINK_PROPS, CONTACT_WA_LINK_PROPS } from './contact.js'
 import { AppLink, HomeSectionLink, useRoute } from './routing.jsx'
 
 export function SiteNav() {
@@ -128,10 +128,14 @@ export function SiteFooter() {
           <AppLink to="/contacto">Contacto</AppLink>
           <HomeSectionLink id="sectores">Sectores</HomeSectionLink>
           <HomeSectionLink id="que-hace">Qué hace</HomeSectionLink>
+          <a {...CONTACT_MAIL_LINK_PROPS}>Soporte</a>
         </nav>
       </div>
       <div className="container footer-legal">
-        <p>© Llisar · Mérida · llisar.com</p>
+        <p>
+          © Llisar · Mérida · llisar.com ·{' '}
+          <a {...CONTACT_MAIL_LINK_PROPS}>{CONTACT_EMAIL}</a>
+        </p>
       </div>
     </footer>
   )
