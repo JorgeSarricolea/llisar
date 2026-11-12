@@ -81,6 +81,8 @@ async function submitViaApi() {
 
 const PAGES = [
   "https://llisar.com/",
+  "https://llisar.com/inmobiliarias",
+  "https://llisar.com/turismo",
   "https://llisar.com/nosotros",
   "https://llisar.com/contacto",
   "https://llisar.com/blog",

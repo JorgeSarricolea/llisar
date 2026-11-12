@@ -21,6 +21,8 @@ const keyLocation = `https://${host}/${key}.txt`
 
 const urls = [
   'https://llisar.com/',
+  'https://llisar.com/inmobiliarias',
+  'https://llisar.com/turismo',
   'https://llisar.com/nosotros',
   'https://llisar.com/contacto',
   'https://llisar.com/blog',
@@ -32,17 +34,42 @@ const urls = [
   'https://llisar.com/sitemap.xml',
 ]
 
-const res = await fetch('https://api.indexnow.org/indexnow', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json; charset=utf-8' },
-  body: JSON.stringify({
-    host,
-    key,
-    keyLocation,
-    urlList: urls,
-  }),
+const body = JSON.stringify({
+  host,
+  key,
+  keyLocation,
+  urlList: urls,
 })
 
-console.log('IndexNow status', res.status, await res.text())
-if (![200, 202].includes(res.status)) process.exit(1)
+const endpoints = [
+  'https://www.bing.com/indexnow',
+  'https://api.indexnow.org/indexnow',
+]
+
+let lastStatus = 0
+let lastText = ''
+let ok = false
+for (const endpoint of endpoints) {
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body,
+    })
+    lastStatus = res.status
+    lastText = await res.text()
+    console.log('IndexNow', endpoint, lastStatus, lastText)
+    if ([200, 202].includes(res.status)) {
+      ok = true
+      break
+    }
+  } catch (err) {
+    console.warn('IndexNow', endpoint, 'failed:', err.cause?.code || err.message)
+  }
+}
+
+if (!ok) {
+  console.error('IndexNow submit failed', lastStatus, lastText)
+  process.exit(1)
+}
 console.log('Submitted', urls.length, 'URLs via IndexNow')
