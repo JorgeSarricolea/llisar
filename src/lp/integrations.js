@@ -1,34 +1,35 @@
 /**
  * Stack tools inmobiliarias / turismo typically already run.
  * Banner = “podemos conectar si hace falta”, not official partnership claims.
+ * `icon: true` → compact Simple Icons glyph beside the name.
  */
 export const INTEGRATIONS = {
   shared: [
-    { id: 'whatsapp', name: 'WhatsApp', src: '/integrations/whatsapp.svg' },
-    { id: 'excel', name: 'Excel', src: '/integrations/excel.svg' },
-    { id: 'googlesheets', name: 'Google Sheets', src: '/integrations/googlesheets.svg' },
-    { id: 'googlecalendar', name: 'Google Calendar', src: '/integrations/googlecalendar.svg' },
-    { id: 'zapier', name: 'Zapier', src: '/integrations/zapier.svg' },
+    { id: 'whatsapp', name: 'WhatsApp', src: '/integrations/whatsapp.svg', icon: true },
+    { id: 'excel', name: 'Excel', src: '/integrations/excel.svg', icon: true },
+    { id: 'googlesheets', name: 'Google Sheets', src: '/integrations/googlesheets.svg', icon: true },
+    { id: 'googlecalendar', name: 'Google Calendar', src: '/integrations/googlecalendar.svg', icon: true },
+    { id: 'zapier', name: 'Zapier', src: '/integrations/zapier.svg', icon: true },
   ],
   realty: [
-    { id: 'inmuebles24', name: 'Inmuebles24', src: '/integrations/inmuebles24.svg' },
-    { id: 'easybroker', name: 'EasyBroker', src: '/integrations/easybroker.svg' },
-    { id: 'lamudi', name: 'Lamudi', src: '/integrations/lamudi.svg' },
-    { id: 'vivanuncios', name: 'Vivanuncios', src: '/integrations/vivanuncios.svg' },
-    { id: 'meta', name: 'Meta', src: '/integrations/meta.svg' },
-    { id: 'hubspot', name: 'HubSpot', src: '/integrations/hubspot.svg' },
-    { id: 'salesforce', name: 'Salesforce', src: '/integrations/salesforce.svg' },
-    { id: 'calendly', name: 'Calendly', src: '/integrations/calendly.svg' },
+    { id: 'inmuebles24', name: 'Inmuebles24' },
+    { id: 'easybroker', name: 'EasyBroker' },
+    { id: 'lamudi', name: 'Lamudi' },
+    { id: 'vivanuncios', name: 'Vivanuncios' },
+    { id: 'meta', name: 'Meta', src: '/integrations/meta.svg', icon: true },
+    { id: 'hubspot', name: 'HubSpot', src: '/integrations/hubspot.svg', icon: true },
+    { id: 'salesforce', name: 'Salesforce', src: '/integrations/salesforce.svg', icon: true },
+    { id: 'calendly', name: 'Calendly', src: '/integrations/calendly.svg', icon: true },
   ],
   tourism: [
-    { id: 'booking', name: 'Booking.com', src: '/integrations/bookingdotcom.svg' },
-    { id: 'airbnb', name: 'Airbnb', src: '/integrations/airbnb.svg' },
-    { id: 'expedia', name: 'Expedia', src: '/integrations/expedia.svg' },
-    { id: 'despegar', name: 'Despegar', src: '/integrations/despegar.svg' },
-    { id: 'tripadvisor', name: 'Tripadvisor', src: '/integrations/tripadvisor.svg' },
-    { id: 'cloudbeds', name: 'Cloudbeds', src: '/integrations/cloudbeds.svg' },
-    { id: 'stripe', name: 'Stripe', src: '/integrations/stripe.svg' },
-    { id: 'mercadopago', name: 'Mercado Pago', src: '/integrations/mercadopago.svg' },
+    { id: 'booking', name: 'Booking.com', src: '/integrations/bookingdotcom.svg', icon: true },
+    { id: 'airbnb', name: 'Airbnb', src: '/integrations/airbnb.svg', icon: true },
+    { id: 'expedia', name: 'Expedia', src: '/integrations/expedia.svg', icon: true },
+    { id: 'despegar', name: 'Despegar' },
+    { id: 'tripadvisor', name: 'Tripadvisor', src: '/integrations/tripadvisor.svg', icon: true },
+    { id: 'cloudbeds', name: 'Cloudbeds' },
+    { id: 'stripe', name: 'Stripe', src: '/integrations/stripe.svg', icon: true },
+    { id: 'mercadopago', name: 'Mercado Pago', src: '/integrations/mercadopago.svg', icon: true },
   ],
 }
 
@@ -55,7 +56,6 @@ export function integrationsFor(niche) {
       : niche === 'tourism'
         ? INTEGRATIONS.tourism
         : [...INTEGRATIONS.realty.slice(0, 4), ...INTEGRATIONS.tourism.slice(0, 4)]
-  // Shared first, then niche — de-dupe by id
   const seen = new Set()
   const items = [...INTEGRATIONS.shared, ...nicheItems].filter((item) => {
     if (seen.has(item.id)) return false
