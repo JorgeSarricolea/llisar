@@ -81,9 +81,9 @@ const STATIC = [
   },
   {
     path: '/contacto',
-    title: 'Contacto | Hablar con Llisar por WhatsApp',
+    title: 'Contacto | Hablar con Llisar',
     description:
-      '¿Qué se te escapa hoy en WhatsApp? Escríbenos al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
+      'Escríbenos a hola@llisar.com o por WhatsApp al +52 999 187 2848. Base en Mérida, trabajo remoto para inmobiliaria y turismo.',
     date: TODAY,
     ogType: 'article',
   },
@@ -124,6 +124,7 @@ function buildJsonLd(page, posts) {
     logo: { '@type': 'ImageObject', url: `${SITE}/favicon.svg` },
     image: `${SITE}/share.jpg`,
     telephone: '+529991872848',
+    email: 'hola@llisar.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Mérida',
