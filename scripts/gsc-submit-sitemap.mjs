@@ -9,8 +9,6 @@
  * Optional API:
  *   GSC_CLIENT_ID=… GSC_CLIENT_SECRET=… GSC_REFRESH_TOKEN=… node scripts/gsc-submit-sitemap.mjs --api
  */
-import { spawn } from "node:child_process";
-
 const PERSONAL_GOOGLE = "jjorgesarricolea18@gmail.com";
 /** Domain property (same shape as ChecaFactura sc-domain:…). */
 const SITE_URL = "sc-domain:llisar.com";
