@@ -71,8 +71,8 @@ export default function NicheLanding({ variantId }) {
         </div>
       </section>
 
-      <OpsFollow niches={niches} copy={flow} waLinkProps={wa} />
-      <IntegrationsBanner niche={variant.niche} />
+      <OpsFollow niches={niches} copy={flow} />
+      <IntegrationsBanner niche={variant.niche} waLinkProps={wa} />
 
       <section className="chapter" id="enfoque" aria-labelledby="enfoque-title">
         <div className="container">

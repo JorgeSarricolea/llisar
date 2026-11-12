@@ -1333,24 +1333,6 @@ html.js .hero__stage[data-enter] {
   color: var(--color-ink-2);
 }
 
-.flow__cta {
-  margin: var(--space-xl) 0 0;
-  max-width: 36rem;
-  font-size: var(--text-sm);
-  line-height: 1.45;
-  color: var(--color-ink-2);
-}
-
-.flow__cta a {
-  color: var(--color-accent);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.flow__cta a:hover {
-  color: var(--color-ink);
-}
 
 /* Integrations — Rocket-style infinite logo marquee */
 .integrations {
@@ -1480,6 +1462,25 @@ html.js .hero__stage[data-enter] {
   font-size: clamp(0.95rem, 0.35vw + 0.85rem, 1.125rem);
   font-weight: 600;
   letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.integrations__cta {
+  margin: var(--space-xl) 0 0;
+  max-width: 36rem;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-ink-2);
+}
+
+.integrations__cta a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.integrations__cta a:hover {
   color: var(--color-ink);
 }
 

@@ -1,3 +1,4 @@
+import { CONTACT_WA_LINK_PROPS } from '../contact.js'
 import { integrationsFor } from './integrations.js'
 
 function MarqueeRow({ items, reverse = false }) {
@@ -29,8 +30,9 @@ function MarqueeRow({ items, reverse = false }) {
   )
 }
 
-export default function IntegrationsBanner({ niche }) {
+export default function IntegrationsBanner({ niche, waLinkProps }) {
   const { title, lead, items } = integrationsFor(niche)
+  const wa = waLinkProps || CONTACT_WA_LINK_PROPS
   const mid = Math.ceil(items.length / 2)
   const rowA = items.slice(0, mid)
   const rowB = items.slice(mid)
@@ -54,6 +56,13 @@ export default function IntegrationsBanner({ niche }) {
       <div className="integrations__rail">
         <MarqueeRow items={rowA} />
         <MarqueeRow items={second} reverse />
+      </div>
+
+      <div className="container">
+        <p className="integrations__cta">
+          ¿Otro paso o un proceso distinto?{' '}
+          <a {...wa}>Escríbenos</a> y lo armamos a tu medida.
+        </p>
       </div>
 
       <ul className="integrations__sr">

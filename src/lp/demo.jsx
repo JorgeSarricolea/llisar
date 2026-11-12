@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { CONTACT_WA_LINK_PROPS } from '../contact.js'
 
 const DEMO_CASES = [
   {
@@ -522,7 +521,7 @@ const DEFAULT_FLOW_COPY = {
   ],
 }
 
-export function OpsFollow({ niches = OPS_ORDER, copy, waLinkProps } = {}) {
+export function OpsFollow({ niches = OPS_ORDER, copy } = {}) {
   const order = niches?.length ? niches : OPS_ORDER
   const orderKey = order.join(',')
   const rotateNiches = order.length > 1
@@ -531,7 +530,6 @@ export function OpsFollow({ niches = OPS_ORDER, copy, waLinkProps } = {}) {
   const data = OPS[niche]
   const [step, setStep] = useState(0)
   const flow = { ...DEFAULT_FLOW_COPY, ...copy }
-  const waProps = waLinkProps || CONTACT_WA_LINK_PROPS
 
   useEffect(() => {
     setNicheIndex(0)
@@ -714,11 +712,6 @@ export function OpsFollow({ niches = OPS_ORDER, copy, waLinkProps } = {}) {
             ))}
           </ul>
         </div>
-
-        <p className="flow__cta">
-          ¿Otro paso o un proceso distinto?{' '}
-          <a {...waProps}>Escríbenos</a> y lo armamos a tu medida.
-        </p>
       </div>
     </section>
   )
