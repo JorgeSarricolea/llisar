@@ -1935,11 +1935,39 @@ html.js .hero__stage[data-enter] {
   padding-block: var(--section-gap-s) var(--section-gap);
 }
 
-.contact-layout {
-  display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
+.contact--compose {
+  padding-block: var(--space-xl) var(--section-gap);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.contact-channels {
+  list-style: none;
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-2xl);
+}
+
+.contact-channels__label {
+  display: block;
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.2rem;
+}
+
+.contact-channels a,
+.contact-channels span:not(.contact-channels__label) {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: var(--text-md);
+}
+
+.contact-channels a:hover {
+  color: var(--color-accent);
 }
 
 .contact-panel {
@@ -1954,10 +1982,6 @@ html.js .hero__stage[data-enter] {
   align-content: center;
 }
 
-.contact-panel--form {
-  align-content: start;
-}
-
 .contact-lead {
   margin-top: 0;
 }
@@ -1968,74 +1992,149 @@ html.js .hero__stage[data-enter] {
   gap: var(--space-sm);
 }
 
-.contact-form__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+.contact-compose {
+  max-width: 38rem;
+  display: grid;
+  gap: var(--space-lg);
 }
 
 .contact-form {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
 .contact-form__row {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-md) var(--space-lg);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .contact-form__field {
   display: grid;
-  gap: var(--space-xs);
+  gap: 0.45rem;
 }
 
-.contact-form__field span {
+.contact-form__field span,
+.contact-form__sector legend {
   font-family: var(--font-outlier);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-ink-2);
 }
 
 .contact-form__field input,
-.contact-form__field select,
 .contact-form__field textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-card);
-  border: var(--rule-hair) solid var(--color-rule-2);
-  background: var(--color-paper);
+  min-height: 3rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: calc(var(--radius-card) - 2px);
+  border: var(--rule-hair) solid color-mix(in oklab, var(--color-ink) 22%, transparent);
+  background: color-mix(in oklab, var(--color-paper-2) 72%, var(--color-paper));
   color: var(--color-ink);
   font: inherit;
   font-size: var(--text-md);
+  transition:
+    border-color var(--dur-micro) var(--ease-soft),
+    background-color var(--dur-micro) var(--ease-soft);
 }
 
-.contact-form__field select {
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
-    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
-  background-position:
-    calc(100% - 1.15rem) calc(50% - 0.15rem),
-    calc(100% - 0.85rem) calc(50% - 0.15rem);
-  background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
-  background-repeat: no-repeat;
-  padding-right: 2.25rem;
+.contact-form__field input::placeholder,
+.contact-form__field textarea::placeholder {
+  color: color-mix(in oklab, var(--color-muted) 85%, transparent);
+}
+
+.contact-form__field input:hover,
+.contact-form__field textarea:hover {
+  border-color: color-mix(in oklab, var(--color-ink) 36%, transparent);
 }
 
 .contact-form__field input:focus,
-.contact-form__field select:focus,
 .contact-form__field textarea:focus {
-  outline: 2px solid color-mix(in oklab, var(--color-accent) 55%, transparent);
-  outline-offset: 2px;
+  outline: none;
+  border-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
+  background: var(--color-paper-2);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 22%, transparent);
 }
 
 .contact-form__field textarea {
   resize: vertical;
-  min-height: 7rem;
+  min-height: 8.5rem;
+  line-height: 1.45;
+}
+
+.contact-form__sector {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.contact-form__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.contact-chip {
+  cursor: pointer;
+}
+
+.contact-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: var(--rule-hair) solid color-mix(in oklab, var(--color-ink) 22%, transparent);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  transition:
+    border-color var(--dur-micro) var(--ease-soft),
+    background-color var(--dur-micro) var(--ease-soft),
+    color var(--dur-micro) var(--ease-soft);
+}
+
+.contact-chip input:focus-visible + span {
+  outline: 2px solid color-mix(in oklab, var(--color-accent) 70%, transparent);
+  outline-offset: 2px;
+}
+
+.contact-chip input:checked + span {
+  border-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 16%, transparent);
+  color: var(--color-ink);
+}
+
+.contact-form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+  padding-top: var(--space-xs);
+}
+
+.contact-form__footer .btn {
+  min-width: 9.5rem;
+}
+
+.contact-form__wa {
+  color: var(--color-ink-2);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  font-size: var(--text-sm);
+}
+
+.contact-form__wa:hover {
+  color: var(--color-accent);
 }
 
 .contact-form__honey {
@@ -2731,12 +2830,13 @@ html.js .hero__stage[data-enter] {
     padding-block: var(--space-lg);
   }
 
-  .contact-layout {
+  .contact-form__row {
     grid-template-columns: 1fr;
   }
 
-  .contact-form__row {
-    grid-template-columns: 1fr;
+  .contact-channels {
+    flex-direction: column;
+    gap: var(--space-md);
   }
 
   .contact-panel {
@@ -2750,8 +2850,13 @@ html.js .hero__stage[data-enter] {
   }
 
   .contact-actions .btn,
-  .contact-form .btn {
+  .contact-form__footer .btn {
     width: 100%;
+  }
+
+  .contact-form__footer {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .page-hero {
