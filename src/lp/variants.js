@@ -24,7 +24,7 @@ export const LP_VARIANTS = {
     hero: {
       photo: '/photos/apartment.jpg',
       photoPosition: '50% 40%',
-      lines: ['Del portal a la visita.', 'WhatsApp que califica y agenda.'],
+      lines: ['Del portal a la visita.', 'WhatsApp que califica.'],
       lead:
         'Agentes de IA en WhatsApp para inmobiliarias. Contestan leads de portales y ads, filtran presupuesto y zona, y dejan la visita lista para tu asesor.',
       cta: 'Hablar con Llisar',
@@ -115,7 +115,7 @@ export const LP_VARIANTS = {
     hero: {
       photo: '/photos/hotel.jpg',
       photoPosition: '50% 45%',
-      lines: ['Del chat a la reserva.', 'Antes de que se vayan a Booking.'],
+      lines: ['Del chat a la reserva.', 'Antes que a Booking.'],
       lead:
         'Agentes de IA en WhatsApp para hoteles, rentas y tours. Confirman fechas, mandan el pago y anotan la reserva a cualquier hora.',
       cta: 'Hablar con Llisar',
