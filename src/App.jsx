@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import './App.css'
+import { initAnalytics } from './analytics.js'
 import { Seo } from './Seo.jsx'
 import { RouteProvider, useRoute } from './routing.jsx'
 import { SiteFooter, SiteNav } from './SiteChrome.jsx'
@@ -30,6 +31,7 @@ function Routes() {
 export default function App() {
   useEffect(() => {
     document.documentElement.classList.add('js')
+    initAnalytics()
   }, [])
 
   return (

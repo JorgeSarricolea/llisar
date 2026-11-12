@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { trackPageview } from './analytics.js'
 
 const RouteContext = createContext(null)
 
@@ -6,7 +7,11 @@ export function RouteProvider({ children }) {
   const [path, setPath] = useState(() => window.location.pathname || '/')
 
   useEffect(() => {
-    const sync = () => setPath(window.location.pathname || '/')
+    const sync = () => {
+      const next = window.location.pathname || '/'
+      setPath(next)
+      trackPageview(next)
+    }
     window.addEventListener('popstate', sync)
     return () => window.removeEventListener('popstate', sync)
   }, [])
@@ -16,6 +21,7 @@ export function RouteProvider({ children }) {
     if (next === window.location.pathname) return
     window.history.pushState({}, '', next)
     setPath(next)
+    trackPageview(next)
     window.scrollTo(0, 0)
   }, [])
 
