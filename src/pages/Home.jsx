@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { CONTACT_WA_LINK_PROPS } from '../contact.js'
 import DemoVideoDialog from '../DemoVideoDialog.jsx'
+import IntegrationsBanner from '../lp/IntegrationsBanner.jsx'
 import { LivingChat, OpsFollow } from '../lp/demo.jsx'
 import { AppLink } from '../routing.jsx'
 
@@ -59,6 +60,7 @@ export default function Home() {
       </section>
 
       <OpsFollow />
+      <IntegrationsBanner />
 
       <section className="chapter" id="sectores" aria-labelledby="sectores-title">
         <div className="container">

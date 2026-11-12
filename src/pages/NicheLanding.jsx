@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import DemoVideoDialog from '../DemoVideoDialog.jsx'
+import IntegrationsBanner from '../lp/IntegrationsBanner.jsx'
 import { LivingChat, OpsFollow } from '../lp/demo.jsx'
 import { getLpVariant, nicheWaLinkProps } from '../lp/variants.js'
 import { AppLink } from '../routing.jsx'
@@ -71,6 +72,7 @@ export default function NicheLanding({ variantId }) {
       </section>
 
       <OpsFollow niches={niches} copy={flow} waLinkProps={wa} />
+      <IntegrationsBanner niche={variant.niche} />
 
       <section className="chapter" id="enfoque" aria-labelledby="enfoque-title">
         <div className="container">

@@ -1352,6 +1352,91 @@ html.js .hero__stage[data-enter] {
   color: var(--color-ink);
 }
 
+/* Integrations logo strip — quiet, not a card grid */
+.integrations {
+  padding-block: var(--space-2xl) var(--section-gap-s);
+  border-top: var(--rule-hair) solid color-mix(in oklab, var(--color-rule) 70%, transparent);
+}
+
+.integrations__intro {
+  max-width: 40rem;
+  margin-bottom: var(--space-xl);
+}
+
+.integrations__eyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-accent-2);
+}
+
+.integrations__title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-2);
+}
+
+.integrations__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.integrations__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 40px;
+  opacity: 0.72;
+  transition: opacity var(--dur-short) var(--ease-soft);
+}
+
+.integrations__item:hover {
+  opacity: 1;
+}
+
+.integrations__mark {
+  display: block;
+  height: 22px;
+  width: auto;
+  max-width: 7.5rem;
+  object-fit: contain;
+  filter: brightness(0) invert(0.9);
+}
+
+.integrations__name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 40rem) {
+  .integrations {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .integrations__logos {
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .integrations__mark {
+    height: 18px;
+    max-width: 6.25rem;
+  }
+}
+
 /* Calendar — brand dusk grid, copper event */
 .flow-card--cal {
   display: flex;
