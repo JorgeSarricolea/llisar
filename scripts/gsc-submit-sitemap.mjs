@@ -26,14 +26,14 @@ const GSC_UI =
 
 const useApi = process.argv.includes("--api");
 
+/**
+ * Never launch Arc/Chrome/desk browser from this script.
+ * Harness rule: use T3 Code integrated preview_* for GSC UI work.
+ * Exception (other skill only): downloading-gated-short-links.
+ */
 function openBrowser(url) {
-  const cmd =
-    process.platform === "darwin"
-      ? "open"
-      : process.platform === "win32"
-        ? "start"
-        : "xdg-open";
-  spawn(cmd, [url], { detached: true, stdio: "ignore" }).unref();
+  console.log("GSC URL (open in T3 Code preview, do not launch desk browser):");
+  console.log(url);
 }
 
 async function submitViaApi() {
