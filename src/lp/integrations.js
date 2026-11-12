@@ -36,15 +36,15 @@ export const INTEGRATIONS = {
 const COPY = {
   all: {
     title: 'Integraciones',
-    lead: 'Si hace falta, conectamos con el calendario, Excel, CRM o PMS que ya usas.',
+    lead: 'Conectamos con tu stack cuando haga falta.',
   },
   realty: {
     title: 'Integraciones',
-    lead: 'Portales, CRM y agenda: conectamos con tu stack inmobiliario cuando haga falta.',
+    lead: 'Conectamos con tu operación inmobiliaria cuando haga falta.',
   },
   tourism: {
     title: 'Integraciones',
-    lead: 'OTAs, PMS y pagos: conectamos con tu operación de turismo cuando haga falta.',
+    lead: 'Conectamos con tu operación de turismo cuando haga falta.',
   },
 }
 
