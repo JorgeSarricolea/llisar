@@ -16,6 +16,16 @@ export const CONTACT_WA_LINK_PROPS = {
   rel: 'noopener noreferrer',
 }
 
+/** Niche LPs / CTAs: same WA number, prefilled intent text. */
+export function contactWaLinkProps(text = CONTACT_WA_TEXT) {
+  const href = `https://wa.me/${CONTACT_PHONE_E164.replace('+', '')}?text=${encodeURIComponent(text)}`
+  return {
+    href,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  }
+}
+
 export const CONTACT_MAIL_LINK_PROPS = {
   href: CONTACT_MAILTO_URL,
 }

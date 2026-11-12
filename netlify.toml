@@ -11,6 +11,16 @@
 # SPA fallbacks only when no prerendered HTML exists (seo-build writes
 # /nosotros/index.html, /nosotros.html, /blog/<slug>.html, etc.).
 [[redirects]]
+  from = "/inmobiliarias"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/turismo"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/nosotros"
   to = "/index.html"
   status = 200

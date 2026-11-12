@@ -126,6 +126,8 @@ export function SiteFooter() {
           <AppLink to="/nosotros">Nosotros</AppLink>
           <AppLink to="/blog">Blog</AppLink>
           <AppLink to="/contacto">Contacto</AppLink>
+          <AppLink to="/inmobiliarias">Inmobiliarias</AppLink>
+          <AppLink to="/turismo">Turismo</AppLink>
           <HomeSectionLink id="sectores">Sectores</HomeSectionLink>
           <HomeSectionLink id="que-hace">Qué hace</HomeSectionLink>
           <a {...CONTACT_MAIL_LINK_PROPS}>Soporte</a>

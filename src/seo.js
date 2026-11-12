@@ -16,6 +16,32 @@ export const PAGES = {
       'Agentes de IA en WhatsApp para inmobiliarias y turismo: contestan, califican y dejan la visita o la reserva lista, también fuera de horario.',
     path: '/',
   },
+  '/inmobiliarias': {
+    title: 'Agente de IA en WhatsApp para inmobiliarias | Llisar',
+    description:
+      'Agente de IA en WhatsApp para inmobiliarias: responde leads de portales y ads, califica presupuesto y zona, y deja la visita en el calendario — también de noche.',
+    path: '/inmobiliarias',
+    keywords: [
+      'agente IA WhatsApp inmobiliaria',
+      'automatizar leads inmobiliarios WhatsApp',
+      'calificar leads inmobiliaria',
+      'agendar visitas WhatsApp',
+      'chatbot inmobiliario México',
+    ],
+  },
+  '/turismo': {
+    title: 'Agente de IA en WhatsApp para turismo y hoteles | Llisar',
+    description:
+      'Agente de IA en WhatsApp para hoteles, rentas vacacionales y tours: confirma fechas, manda el pago, gestiona cambios y anota la reserva — también fuera de horario.',
+    path: '/turismo',
+    keywords: [
+      'agente IA WhatsApp turismo',
+      'WhatsApp hotel automatización',
+      'reservas WhatsApp',
+      'chatbot turismo México',
+      'atención huéspedes WhatsApp',
+    ],
+  },
   '/nosotros': {
     title: 'Quiénes somos | Agentes de IA en WhatsApp · Llisar',
     description:
@@ -248,7 +274,47 @@ export function applyPageSeo(path) {
         availableLanguage: ['es', 'en'],
       },
     })
+  }
 
+  const nicheService = {
+    '/inmobiliarias': {
+      id: 'service-inmobiliarias',
+      name: 'Agente de IA en WhatsApp para inmobiliarias',
+      serviceType: [
+        'Agente de IA en WhatsApp para inmobiliarias',
+        'Calificación de leads inmobiliarios',
+        'Agendar visitas por WhatsApp',
+      ],
+    },
+    '/turismo': {
+      id: 'service-turismo',
+      name: 'Agente de IA en WhatsApp para turismo',
+      serviceType: [
+        'Agente de IA en WhatsApp para turismo',
+        'Reservas directas por WhatsApp',
+        'Atención a huéspedes fuera de horario',
+      ],
+    },
+  }
+
+  if (nicheService[page.path]) {
+    const svc = nicheService[page.path]
+    graph.push({
+      '@type': 'ProfessionalService',
+      '@id': `${SITE_URL}/#${svc.id}`,
+      name: svc.name,
+      url,
+      description: page.description,
+      areaServed: ['MX', 'Worldwide'],
+      serviceType: svc.serviceType,
+      provider: { '@id': `${SITE_URL}/#organization` },
+      image: DEFAULT_OG_IMAGE,
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: CONTACT_WA_URL,
+        availableLanguage: ['es', 'en'],
+      },
+    })
   }
 
   if (page.path === '/blog') {
@@ -304,6 +370,8 @@ export function applyPageSeo(path) {
     ]
 
     const crumbName = {
+      '/inmobiliarias': 'Inmobiliarias',
+      '/turismo': 'Turismo',
       '/nosotros': 'Quiénes somos',
       '/contacto': 'Contacto',
       '/blog': 'Blog',

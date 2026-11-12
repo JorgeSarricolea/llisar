@@ -8,6 +8,7 @@ import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 import Contact from './pages/Contact.jsx'
 import Home from './pages/Home.jsx'
+import NicheLanding from './pages/NicheLanding.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function Routes() {
@@ -20,6 +21,8 @@ function Routes() {
     const slug = path.slice('/blog/'.length).replace(/\/$/, '')
     if (slug && !slug.includes('/')) return <BlogPost slug={slug} />
   }
+  if (path === '/inmobiliarias') return <NicheLanding variantId="inmobiliarias" />
+  if (path === '/turismo') return <NicheLanding variantId="turismo" />
   if (path === '/' || path === '') return <Home />
   return <NotFound />
 }

@@ -13,7 +13,7 @@ const root = join(__dirname, '..')
 const dist = join(root, 'dist')
 const contentDir = join(root, 'content/blog')
 const SITE = 'https://llisar.com'
-const TODAY = '2026-11-11'
+const TODAY = '2026-11-12'
 
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/)
@@ -70,6 +70,36 @@ const STATIC = [
       'Agentes de IA en WhatsApp para inmobiliarias y turismo: contestan, califican y dejan la visita o la reserva lista, también fuera de horario.',
     date: TODAY,
     ogType: 'website',
+  },
+  {
+    path: '/inmobiliarias',
+    title: 'Agente de IA en WhatsApp para inmobiliarias | Llisar',
+    description:
+      'Agente de IA en WhatsApp para inmobiliarias: responde leads de portales y ads, califica presupuesto y zona, y deja la visita en el calendario — también de noche.',
+    date: TODAY,
+    ogType: 'website',
+    keywords: [
+      'agente IA WhatsApp inmobiliaria',
+      'automatizar leads inmobiliarios WhatsApp',
+      'calificar leads inmobiliaria',
+      'agendar visitas WhatsApp',
+      'chatbot inmobiliario México',
+    ],
+  },
+  {
+    path: '/turismo',
+    title: 'Agente de IA en WhatsApp para turismo y hoteles | Llisar',
+    description:
+      'Agente de IA en WhatsApp para hoteles, rentas vacacionales y tours: confirma fechas, manda el pago, gestiona cambios y anota la reserva — también fuera de horario.',
+    date: TODAY,
+    ogType: 'website',
+    keywords: [
+      'agente IA WhatsApp turismo',
+      'WhatsApp hotel automatización',
+      'reservas WhatsApp',
+      'chatbot turismo México',
+      'atención huéspedes WhatsApp',
+    ],
   },
   {
     path: '/nosotros',
@@ -209,6 +239,8 @@ function buildJsonLd(page, posts) {
     }
     if (page.path !== '/') {
       const names = {
+        '/inmobiliarias': 'Inmobiliarias',
+        '/turismo': 'Turismo',
         '/nosotros': 'Quiénes somos',
         '/contacto': 'Contacto',
         '/blog': 'Blog',
