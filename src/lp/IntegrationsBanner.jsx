@@ -30,6 +30,7 @@ function MarqueeRow({ items, reverse = false }) {
   )
 }
 
+/** Lives inside the ops flow section — same block, not a separate chapter. */
 export default function IntegrationsBanner({ niche, waLinkProps }) {
   const { title, lead, items } = integrationsFor(niche)
   const wa = waLinkProps || CONTACT_WA_LINK_PROPS
@@ -39,17 +40,11 @@ export default function IntegrationsBanner({ niche, waLinkProps }) {
   const second = rowB.length >= 3 ? rowB : items
 
   return (
-    <section
-      className="integrations"
-      id="integraciones"
-      aria-labelledby="integraciones-title"
-    >
+    <div className="integrations" id="integraciones">
       <div className="container">
         <header className="integrations__intro">
           <p className="fig integrations__eyebrow">{title}</p>
-          <h2 id="integraciones-title" className="integrations__title">
-            {lead}
-          </h2>
+          <p className="integrations__title">{lead}</p>
         </header>
       </div>
 
@@ -70,6 +65,6 @@ export default function IntegrationsBanner({ niche, waLinkProps }) {
           <li key={item.id}>{item.name}</li>
         ))}
       </ul>
-    </section>
+    </div>
   )
 }

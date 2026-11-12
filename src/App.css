@@ -1334,16 +1334,17 @@ html.js .hero__stage[data-enter] {
 }
 
 
-/* Integrations — Rocket-style infinite logo marquee */
-.integrations {
-  padding-block: var(--space-2xl) var(--section-gap-s);
-  border-top: var(--rule-hair) solid color-mix(in oklab, var(--color-rule) 70%, transparent);
+/* Integrations — continuation of the ops flow section */
+.flow .integrations {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  padding-bottom: 0;
   overflow: hidden;
 }
 
 .integrations__intro {
   max-width: 42rem;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .integrations__eyebrow {
@@ -1353,12 +1354,12 @@ html.js .hero__stage[data-enter] {
 
 .integrations__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.1vw + 0.95rem, 1.75rem);
-  font-weight: var(--display-weight, 550);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-2);
   text-wrap: balance;
 }
 
@@ -1521,8 +1522,9 @@ html.js .hero__stage[data-enter] {
 }
 
 @media (max-width: 40rem) {
-  .integrations {
-    padding-block: var(--space-xl) var(--space-2xl);
+  .flow .integrations {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
   }
 
   .integrations__marquee {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import IntegrationsBanner from './IntegrationsBanner.jsx'
 
 const DEMO_CASES = [
   {
@@ -521,7 +522,7 @@ const DEFAULT_FLOW_COPY = {
   ],
 }
 
-export function OpsFollow({ niches = OPS_ORDER, copy } = {}) {
+export function OpsFollow({ niches = OPS_ORDER, copy, waLinkProps } = {}) {
   const order = niches?.length ? niches : OPS_ORDER
   const orderKey = order.join(',')
   const rotateNiches = order.length > 1
@@ -530,6 +531,7 @@ export function OpsFollow({ niches = OPS_ORDER, copy } = {}) {
   const data = OPS[niche]
   const [step, setStep] = useState(0)
   const flow = { ...DEFAULT_FLOW_COPY, ...copy }
+  const integrationsNiche = order.length === 1 ? order[0] : undefined
 
   useEffect(() => {
     setNicheIndex(0)
@@ -713,6 +715,11 @@ export function OpsFollow({ niches = OPS_ORDER, copy } = {}) {
           </ul>
         </div>
       </div>
+
+      <IntegrationsBanner
+        niche={integrationsNiche}
+        waLinkProps={waLinkProps}
+      />
     </section>
   )
 }
