@@ -1981,6 +1981,12 @@ html.js .hero__stage[data-enter] {
   gap: var(--space-md);
 }
 
+.contact-form__row {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .contact-form__field {
   display: grid;
   gap: var(--space-xs);
@@ -1995,6 +2001,7 @@ html.js .hero__stage[data-enter] {
 }
 
 .contact-form__field input,
+.contact-form__field select,
 .contact-form__field textarea {
   width: 100%;
   box-sizing: border-box;
@@ -2007,7 +2014,20 @@ html.js .hero__stage[data-enter] {
   font-size: var(--text-md);
 }
 
+.contact-form__field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% - 0.15rem),
+    calc(100% - 0.85rem) calc(50% - 0.15rem);
+  background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
 .contact-form__field input:focus,
+.contact-form__field select:focus,
 .contact-form__field textarea:focus {
   outline: 2px solid color-mix(in oklab, var(--color-accent) 55%, transparent);
   outline-offset: 2px;
@@ -2015,7 +2035,7 @@ html.js .hero__stage[data-enter] {
 
 .contact-form__field textarea {
   resize: vertical;
-  min-height: 8rem;
+  min-height: 7rem;
 }
 
 .contact-form__honey {
@@ -2078,6 +2098,18 @@ html.js .hero__stage[data-enter] {
   max-width: 40rem;
   display: grid;
   gap: var(--space-md);
+}
+
+.page-hero__copy--start,
+.page-hero--contact .page-hero__copy {
+  margin-inline: 0;
+  margin-right: auto;
+  text-align: left;
+  justify-items: start;
+}
+
+.page-hero--contact {
+  text-align: left;
 }
 
 .page-hero h1 {
@@ -2700,6 +2732,10 @@ html.js .hero__stage[data-enter] {
   }
 
   .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__row {
     grid-template-columns: 1fr;
   }
 
