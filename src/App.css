@@ -2137,6 +2137,17 @@ html.js .hero__stage[data-enter] {
   color: var(--color-accent);
 }
 
+.contact-form__error {
+  margin: 0;
+  color: color-mix(in oklab, oklch(65% 0.16 25) 90%, var(--color-ink));
+  font-size: var(--text-sm);
+}
+
+.contact-form__footer .btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 .contact-form__honey {
   position: absolute;
   left: -9999px;

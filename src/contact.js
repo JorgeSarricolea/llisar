@@ -6,8 +6,8 @@ export const CONTACT_WA_TEXT =
   'Hola — me interesa un agente de IA en WhatsApp para mi negocio.'
 export const CONTACT_WA_URL = `https://wa.me/${CONTACT_PHONE_E164.replace('+', '')}?text=${encodeURIComponent(CONTACT_WA_TEXT)}`
 export const CONTACT_TEL_URL = `tel:${CONTACT_PHONE_E164}`
-/** FormSubmit delivers contact form posts to the shared support alias. */
-export const CONTACT_FORM_ACTION = `https://formsubmit.co/${CONTACT_EMAIL}`
+/** Netlify Forms form name (must match the hidden form in index.html). */
+export const CONTACT_FORM_NAME = 'llisar-contact'
 
 /** Shared props so WhatsApp always opens in a new tab. */
 export const CONTACT_WA_LINK_PROPS = {

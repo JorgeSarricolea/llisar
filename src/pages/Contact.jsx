@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {
   CONTACT_EMAIL,
-  CONTACT_FORM_ACTION,
+  CONTACT_FORM_NAME,
   CONTACT_MAIL_LINK_PROPS,
   CONTACT_PHONE_DISPLAY,
   CONTACT_WA_LINK_PROPS,
@@ -9,11 +9,37 @@ import {
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     if (params.get('enviado') === '1') setSent(true)
   }, [])
+
+  async function onSubmit(event) {
+    event.preventDefault()
+    if (sending) return
+    setSending(true)
+    setError(false)
+    const form = event.currentTarget
+    const data = new FormData(form)
+    data.set('form-name', CONTACT_FORM_NAME)
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+      if (!res.ok) throw new Error('submit_failed')
+      setSent(true)
+      window.history.replaceState({}, '', '/contacto?enviado=1')
+    } catch {
+      setError(true)
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <main id="contenido" className="page">
@@ -58,23 +84,16 @@ export default function Contact() {
           ) : (
             <form
               className="contact-compose contact-form"
-              action={CONTACT_FORM_ACTION}
+              name={CONTACT_FORM_NAME}
               method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={onSubmit}
             >
-              <input
-                type="hidden"
-                name="_subject"
-                value="Nuevo lead desde llisar.com/contacto"
-              />
-              <input type="hidden" name="_template" value="table" />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://llisar.com/contacto?enviado=1"
-              />
+              <input type="hidden" name="form-name" value={CONTACT_FORM_NAME} />
               <input
                 type="text"
-                name="_honey"
+                name="bot-field"
                 className="contact-form__honey"
                 tabIndex={-1}
                 autoComplete="off"
@@ -167,9 +186,19 @@ export default function Contact() {
                 />
               </label>
 
+              {error ? (
+                <p className="contact-form__error" role="alert">
+                  No se pudo enviar. Intenta de nuevo o escríbenos por WhatsApp.
+                </p>
+              ) : null}
+
               <div className="contact-form__footer">
-                <button className="btn btn--accent" type="submit">
-                  Enviar
+                <button
+                  className="btn btn--accent"
+                  type="submit"
+                  disabled={sending}
+                >
+                  {sending ? 'Enviando…' : 'Enviar'}
                 </button>
                 <a className="contact-form__wa" {...CONTACT_WA_LINK_PROPS}>
                   O escribir por WhatsApp

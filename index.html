@@ -98,6 +98,23 @@
     />
   </head>
   <body>
+    <!-- Netlify Forms detection (parsed at deploy; keep fields in sync with Contact.jsx) -->
+    <form
+      name="llisar-contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="bot-field" />
+      <input type="text" name="nombre" />
+      <input type="email" name="email" />
+      <input type="tel" name="whatsapp" />
+      <input type="text" name="negocio" />
+      <input type="text" name="sector" />
+      <input type="text" name="problema" />
+      <input type="text" name="herramientas" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
